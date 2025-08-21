@@ -103,7 +103,9 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="index.html">Digital Humanities Lab IIT (ISM) Dhanbad</a>
+                <a class="navbar-brand text-wrap" href="index.html">
+                    Digital Humanities Lab IIT (ISM) Dhanbad
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
@@ -216,12 +218,15 @@
             col.innerHTML = `
                 <div class="row gx-5">
                     <div class="col-lg-3">
-                        <div class="d-flex align-items-center mt-lg-5 mb-4">
-                            ${avatarHtml}
-                            <div class="ms-3">
-                                <div class="fw-bold" style="font-size:1.1em;">${blog.author}</div>
-                                <div class="text-muted" style="color:#ccc!important;">${blog.subtitle}</div>
+                        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center mt-lg-5 mb-4">
+                            <div class="d-flex align-items-center">
+                                ${avatarHtml}
+                                <div class="ms-3">
+                                    <div class="fw-bold" style="font-size:1.1em;">${blog.author}</div>
+                                    <div class="text-muted" style="color:#ccc!important;">${blog.subtitle}</div>
+                                </div>
                             </div>
+                           
                         </div>
                     </div>
                     <div class="col-lg-9 p-4">
