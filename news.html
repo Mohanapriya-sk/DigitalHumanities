@@ -77,8 +77,10 @@
 
                     // Style first letter of heading (reduce space between big letter and rest)
                     const headingHtml = `
-                        <span style="font-size:2.5em; font-weight:bold; display:inline-block; vertical-align:bottom; line-height:1; margin-right:-10px;">${news.heading.charAt(0)}</span>
-                        <span style="display:inline-block; vertical-align:middle; font-size:1em;">${news.heading.slice(1)}</span>
+                    
+                        
+                        <span style="display:inline-block; vertical-align:bottom; font-size:1em;">${news.heading}</span>
+                        
                     `;
 
                     col.innerHTML = `

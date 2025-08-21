@@ -12645,17 +12645,17 @@ html {
   font-size: 0.95rem;
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
   .project-card .card {
     max-width: 100%;
   }
 
-  .batch-img,
+   .batch-img,
   .project-img {
     width: 64px;
     height: 64px;
-  }
-}
+  } 
+} */
 
 .alphabet-nav {
   text-align: center;
@@ -12683,3 +12683,11 @@ html {
 .hidden {
   display: none !important;
 }
+
+           
+            @media (max-width: 576px) {
+                .news-heading-flex {
+                display: flex;
+            }
+                
+            }
