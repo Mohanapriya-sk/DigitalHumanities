@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>News | Digital Humanities Lab IIT (ISM) Dhanbad</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+      
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html">Digital Humanities Lab IIT (ISM) Dhanbad</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownProjects" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Student Projects</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProjects">
+                                    <li><a class="dropdown-item" href="projects-az.html">Projects A-Z</a></li>
+                                    <li><a class="dropdown-item" href="projects-batch.html">Projects by Batch</a></li>
+                                    <li><a class="dropdown-item" href="projects-field.html">Projects by Field of Study</a></li>
+                                    <li><a class="dropdown-item" href="projects-topics.html">Projects by Topics/Method</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="reading-group.html">Reading Group</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Page Content-->
+            <section class="py-5 bg-light" id="scroll-target">
+                <div class="container px-5 my-5">
+                    <div id="newsContent" class="row gx-5">
+                        <!-- News items will be rendered by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">&copy; 2024 | Licensed under <a class="link-light small" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons License</a></div></div>
+                   
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="js/news.js"></script>
+        <script>
+            // Render all news items professionally, image left, content right, big first letter in heading
+            function renderNewsContent() {
+                const newsContent = document.getElementById('newsContent');
+                newsContent.innerHTML = '';
+                newsData.forEach(news => {
+                    const col = document.createElement('div');
+                    col.className = 'col-12 mb-5';
+                    col.id = news.id;
+
+                    // Style first letter of heading (reduce space between big letter and rest)
+                    const headingHtml = `
+                        <span style="font-size:2.5em; font-weight:bold; display:inline-block; vertical-align:bottom; line-height:1; margin-right:-10px;">${news.heading.charAt(0)}</span>
+                        <span style="display:inline-block; vertical-align:middle; font-size:1em;">${news.heading.slice(1)}</span>
+                    `;
+
+                    col.innerHTML = `
+                        <div class="card shadow-sm border">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    ${news.img ? `
+                                    <div class="col-md-4 mb-3 mb-md-0 text-center">
+                                        <img src="${news.img}" alt="" class="img-fluid rounded" style="max-height:220px;">
+                                    </div>
+                                    ` : ''}
+                                    <div class="${news.img ? 'col-md-8' : 'col-12'}">
+                                        <h3 class="fw-bold mb-2" style="overflow:hidden;">${headingHtml}</h3>
+                                        <div class="text-muted mb-2">${news.date}</div>
+                                        <div class="mb-2">${news.content}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    newsContent.appendChild(col);
+                });
+            }
+            renderNewsContent();
+        </script>
+    </body>
+</html>

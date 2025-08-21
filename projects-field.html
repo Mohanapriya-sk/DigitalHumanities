@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Projects A–Z | Digital Humanities Lab IIT (ISM) Dhanbad" />
+    <meta name="author" content="" />
+     <title>Projects by Field of Study | Digital Humanities Lab IIT (ISM) Dhanbad</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+
+
+</head>
+
+<body class="d-flex flex-column">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html">Digital Humanities Lab IIT (ISM) Dhanbad</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownProjects" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Student Projects</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProjects">
+                                <li><a class="dropdown-item" href="projects-az.html">Projects A-Z</a></li>
+                                <li><a class="dropdown-item" href="projects-batch.html">Projects by Batch</a></li>
+                                <li><a class="dropdown-item" href="projects-field.html">Projects by Field of Study</a>
+                                </li>
+                                <li><a class="dropdown-item" href="projects-topics.html">Projects by Topics/Method</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reading-group.html">Reading Group</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="py-5 bg-light">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bolder">Projects by Field of Study</h2>
+                    <p class="lead fw-normal text-muted">Explore student projects by field of study</p>
+                </div>
+                <!-- Field Grid -->
+                <div id="fieldGrid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4"></div>
+                <!-- Project Grid -->
+                <div id="projectGrid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6 g-4 hidden"></div>
+                <!-- Back Button -->
+                <div class="text-center mt-4">
+                    <button id="backToFields" class="btn btn-outline-dark hidden" onclick="showFields()">Back to Fields</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer-->
+     <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white">
+                        &copy; 2024 | Licensed under
+                        <a class="link-light small" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative
+                            Commons License</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ...existing code... -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/projects.js"></script>
+    <script>
+        // Field list
+        const fieldList = projectData.fieldData;
+
+        // Render field cards
+        function showFields() {
+            document.getElementById('fieldGrid').classList.remove('hidden');
+            document.getElementById('projectGrid').classList.add('hidden');
+            document.getElementById('backToFields').classList.add('hidden');
+            const fieldGrid = document.getElementById('fieldGrid');
+            fieldGrid.innerHTML = '';
+            fieldList.forEach(field => {
+                fieldGrid.innerHTML += `
+                    <div class="col-md-3 project-card" style="cursor:pointer;" onclick="showProjects('${field.id}')">
+                        <div class="card h-100 text-center">
+                            <img src="${field.img}" alt="${field.name}" class="batch-img">
+                            <div class="card-body">
+                                <h6 class="card-title">${field.name}</h6>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Render all project cards (no filter)
+        function showProjects(fieldId) {
+            document.getElementById('fieldGrid').classList.add('hidden');
+            document.getElementById('projectGrid').classList.remove('hidden');
+            document.getElementById('backToFields').classList.remove('hidden');
+            const projectGrid = document.getElementById('projectGrid');
+            projectGrid.innerHTML = '';
+            projectData.projects
+        .filter(project => project.field === fieldId)
+        .forEach(project => {
+            projectGrid.innerHTML += `
+                <div class="col-md-3 project-card" style="cursor:pointer;" onclick="window.open('${project.link}', '_blank')">
+                    <div class="card h-100 text-center">
+                        <img src="${project.img}" alt="${project.title}" class="project-img">
+                        <div class="card-body">
+                            <h6 class="card-title">${project.title}</h6>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        }
+
+        // Initial render
+        showFields();
+    </script>
+</body>
+
+</html>
